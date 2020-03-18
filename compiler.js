@@ -9,6 +9,9 @@ fs.readFile(fileName, function (err, f) {
     var lineas = programa.split('\n');
     var fallo = false;
     var output = '';
+
+    var n = lineas.length;
+    output = n.toString();
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     for (var j = 0; j < lineas.length; j++) {
 
@@ -110,7 +113,7 @@ fs.readFile(fileName, function (err, f) {
 
             }
 
-            output = output.concat(binario + '\n');
+            output = output.concat( '\n' + binario);
             console.log(binario);
 
         }
