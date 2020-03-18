@@ -64,6 +64,13 @@ fs.readFile(fileName, function (err, f) {
 
                     binario = binario.concat(opcode, rs, rt, rd, '00000', func);
                     break;
+                //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------       
+                case 'R2':
+                    rd = toBinary(parseInt(comandos[1]), 5);
+                    rt = toBinary(parseInt(comandos[2]), 5);
+                    sa = toBinary(parseInt(comandos[3]), 5);
+                    binario = binario.concat(opcode,'00000', rt, rd, sa , func);
+                    break;
                 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
                 case 'J1':
                     index = toBinary(parseInt(comandos[1]), 26);
@@ -110,19 +117,19 @@ fs.readFile(fileName, function (err, f) {
 const INSTRUCCIONES = [
     { instr: 'addi', tipo: 'I1', opcode: '001000', func: '' },
     { instr: 'andi', tipo: 'I1', opcode: '001100', func: '' },
-    { instr: 'ori', tipo: 'I1', opcode: '001101', func: '' },
+    { instr: 'ori',  tipo: 'I1', opcode: '001101', func: '' },
     { instr: 'slti', tipo: 'I1', opcode: '001010', func: '' },
     { instr: 'xori', tipo: 'I1', opcode: '001110', func: '' },
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    { instr: 'lb', tipo: 'I2', opcode: '100000', func: '' },
+    { instr: 'lb',  tipo: 'I2', opcode: '100000', func: '' },
     { instr: 'lbu', tipo: 'I2', opcode: '100100', func: '' },
-    { instr: 'lh', tipo: 'I2', opcode: '100001', func: '' },
+    { instr: 'lh',  tipo: 'I2', opcode: '100001', func: '' },
     { instr: 'lhu', tipo: 'I2', opcode: '100101', func: '' },
-    { instr: 'lw', tipo: 'I2', opcode: '100011', func: '' },
+    { instr: 'lw',  tipo: 'I2', opcode: '100011', func: '' },
     { instr: 'lwu', tipo: 'I2', opcode: '100111', func: '' },
-    { instr: 'sb', tipo: 'I2', opcode: '101000', func: '' },
-    { instr: 'sh', tipo: 'I2', opcode: '101001', func: '' },
-    { instr: 'sw', tipo: 'I2', opcode: '101011', func: '' },
+    { instr: 'sb',  tipo: 'I2', opcode: '101000', func: '' },
+    { instr: 'sh',  tipo: 'I2', opcode: '101001', func: '' },
+    { instr: 'sw',  tipo: 'I2', opcode: '101011', func: '' },
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     { instr: 'beq', tipo: 'I3', opcode: '000100', func: '' },
     { instr: 'bne', tipo: 'I3', opcode: '000101', func: '' },
@@ -130,28 +137,30 @@ const INSTRUCCIONES = [
     { instr: 'lui', tipo: 'I4', opcode: '001111', func: '' },
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     { instr: 'nop', tipo: 'NOP', opcode: '111111', func: '000000' },
-    { instr: 'halt', tipo: 'HLT', opcode: '111111', func: '111111' },
+    { instr: 'halt',tipo: 'HLT', opcode: '111111', func: '111111' },
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     { instr: 'add', tipo: 'R1', opcode: '000000', func: '100000' },
-    { instr: 'addu', tipo: 'R1', opcode: '000000', func: '100001' },
+    { instr: 'addu',tipo: 'R1', opcode: '000000', func: '100001' },
     { instr: 'and', tipo: 'R1', opcode: '000000', func: '100100' },
     { instr: 'nor', tipo: 'R1', opcode: '000000', func: '100111' },
-    { instr: 'or', tipo: 'R1', opcode: '000000', func: '100101' },
-    { instr: 'sllv', tipo: 'R1', opcode: '000000', func: '000100' },
-    { instr: 'srlv', tipo: 'R1', opcode: '000000', func: '000110' },
-    { instr: 'srav', tipo: 'R1', opcode: '000000', func: '000111' },
+    { instr: 'or',  tipo: 'R1', opcode: '000000', func: '100101' },
+    { instr: 'sllv',tipo: 'R1', opcode: '000000', func: '000100' },
+    { instr: 'srlv',tipo: 'R1', opcode: '000000', func: '000110' },
+    { instr: 'srav',tipo: 'R1', opcode: '000000', func: '000111' },
     { instr: 'slt', tipo: 'R1', opcode: '000000', func: '101010' },
     { instr: 'sub', tipo: 'R1', opcode: '000000', func: '100010' },
-    { instr: 'subu', tipo: 'R1', opcode: '000000', func: '100011' },
+    { instr: 'subu',tipo: 'R1', opcode: '000000', func: '100011' },
     { instr: 'xor', tipo: 'R1', opcode: '000000', func: '100110' },
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-    { instr: 'j', tipo: 'J1', opcode: '000010', func: '' },
+    { instr: 'sll', tipo: 'R2', opcode: '000000', func: '000000' },
+    { instr: 'srl', tipo: 'R2', opcode: '000000', func: '000010' },
+    { instr: 'sra', tipo: 'R2', opcode: '000000', func: '000011' },
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    { instr: 'j',   tipo: 'J1', opcode: '000010', func: '' },
     { instr: 'jal', tipo: 'J1', opcode: '000011', func: '' },
-    { instr: 'jalr', tipo: 'J2', opcode: '000000', func: '001001' },
-    { instr: 'jr', tipo: 'J3', opcode: '000000', func: '001000' },
-
+    { instr: 'jalr',tipo: 'J2', opcode: '000000', func: '001001' },
+    { instr: 'jr',  tipo: 'J3', opcode: '000000', func: '001000' },
 ]
-
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 function toBinary(integer, withPaddingLength) {
     let str = integer.toString(2);
