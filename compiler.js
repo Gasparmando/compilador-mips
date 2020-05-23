@@ -11,7 +11,7 @@ fs.readFile(fileName, function (err, f) {
     var output = '';
 
     var n = lineas.length;
-    output = n.toString();
+    // output = n.toString();
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     for (var j = 0; j < lineas.length; j++) {
 
@@ -113,7 +113,7 @@ fs.readFile(fileName, function (err, f) {
 
             }
 
-            output = output.concat( '\n' + binario);
+            output = output.concat( binario + '\n');
             console.log(binario);
 
         }
@@ -123,7 +123,7 @@ fs.readFile(fileName, function (err, f) {
     if (fallo) {
         console.error('FALLO')
     } else {
-        fs.writeFile('output.bin', output, function (err) {
+        fs.writeFile('data_file.bin', output, function (err) {
             if (err) throw err;
             console.log('Archivo binario generado: output.bin!');
         });
