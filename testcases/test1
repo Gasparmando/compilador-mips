@@ -1,0 +1,6 @@
+addi 1, 0, 15
+addi 2, 0, 1
+ori 5, 0, 13
+ori 4, 0, 255
+addu 3, 1, 2
+halt
