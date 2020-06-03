@@ -86,10 +86,9 @@ fs.readFile(fileName, function (err, f) {
                 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
                 case 'J2':
 
-                    rd = toBinary(parseInt(comandos[1]), 5);
-                    rs = toBinary(parseInt(comandos[2]), 5);
+                    rs = toBinary(parseInt(comandos[1]), 5);
 
-                    binario = binario.concat(opcode, rs, '00000', rd, '00000', func);
+                    binario = binario.concat(opcode, rs, '00000', '11111', '00000', func);
 
                     break;
                 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
@@ -123,7 +122,7 @@ fs.readFile(fileName, function (err, f) {
     if (fallo) {
         console.error('FALLO')
     } else {
-        fs.writeFile('data_file.bin', output, function (err) {
+        fs.writeFile('../data_file.bin', output, function (err) {
             if (err) throw err;
             console.log('Archivo binario generado: output.bin!');
         });
