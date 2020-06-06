@@ -1,0 +1,11 @@
+addi $1, $0, 15
+xori $2, $1, 10
+nop
+andi $3, $1 26
+addi $4, $0, 963
+sw $4, 1(0) 
+nop
+nop 
+lbu $5, 1(0) 
+lb $6, 1(0)
+halt
